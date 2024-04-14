@@ -4,24 +4,22 @@ import java.util.Objects;
 
 public class ExternalMavenDependency extends Dependency {
 
-    String groupId;
+    private final String groupId;
 
-    String version;
+    private final String version;
+
+    public ExternalMavenDependency(final String groupId,final String artifactId,final String version) {
+        super(artifactId);
+        this.groupId = groupId;
+        this.version = version;
+    }
 
     public String getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(String groupId) {
-        this.groupId = groupId;
-    }
-
     public String getVersion() {
         return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
     }
 
     @Override
@@ -40,6 +38,6 @@ public class ExternalMavenDependency extends Dependency {
 
     @Override
     public String toString() {
-        return String.join(":", groupId, artifactId, version);
+        return String.join(":", groupId, super.getArtifactId(), version);
     }
 }

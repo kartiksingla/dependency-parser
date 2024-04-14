@@ -4,14 +4,14 @@ import java.util.Objects;
 
 public abstract class Dependency {
 
-    String artifactId;
+    private final String artifactId;
+
+    protected Dependency(final String artifactId) {
+        this.artifactId = artifactId;
+    }
 
     public String getArtifactId() {
         return artifactId;
-    }
-
-    public void setArtifactId(String artifactId) {
-        this.artifactId = artifactId;
     }
 
     @Override
