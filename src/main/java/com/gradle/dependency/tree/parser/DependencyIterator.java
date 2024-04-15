@@ -13,7 +13,7 @@ public class DependencyIterator implements Iterator<Dependency> {
 
     private int currentPosition = 0;
     private final Predicate<DependencyIterator> hasNextPredicate = DependencyIterator::hasNext;
-    
+
     public DependencyIterator(final List<String> lines) {
         this.lines = lines;
     }
