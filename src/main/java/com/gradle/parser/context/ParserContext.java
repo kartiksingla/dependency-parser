@@ -1,6 +1,6 @@
 package com.gradle.parser.context;
 
-import com.gradle.model.Dependency;
+import com.gradle.common.model.Dependency;
 import com.gradle.parser.strategy.IParsingStrategy;
 
 import java.util.Map;

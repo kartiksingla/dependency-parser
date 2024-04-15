@@ -1,6 +1,6 @@
 package com.gradle.parser.strategy;
 
-import com.gradle.model.Dependency;
+import com.gradle.common.model.Dependency;
 
 import java.util.List;
 import java.util.Map;

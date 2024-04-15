@@ -1,4 +1,4 @@
-package com.gradle.model.scope;
+package com.gradle.common.model;
 
 public enum GeneralScope {
 

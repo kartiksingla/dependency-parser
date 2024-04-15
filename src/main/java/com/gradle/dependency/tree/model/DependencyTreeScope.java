@@ -1,4 +1,6 @@
-package com.gradle.model.scope;
+package com.gradle.dependency.tree.model;
+
+import com.gradle.common.model.GeneralScope;
 
 import java.util.Set;
 
@@ -8,7 +10,7 @@ public enum DependencyTreeScope {
     TEST_COMPILE_CLASSPATH("testCompileClasspath", GeneralScope.COMPILE, Set.of(COMPILE_CLASSPATH)),
 
     RUNTIME_ONLY("runtimeOnly", GeneralScope.RUNTIME, Set.of(COMPILE_CLASSPATH)),
-    TEST_RUNTIME_ONLY("testRuntimeOnly", GeneralScope.COMPILE, Set.of(COMPILE_CLASSPATH, TEST_COMPILE_CLASSPATH, RUNTIME_ONLY));
+    TEST_RUNTIME_ONLY("testRuntimeOnly", GeneralScope.RUNTIME, Set.of(COMPILE_CLASSPATH, TEST_COMPILE_CLASSPATH, RUNTIME_ONLY));
 
     private final String name;
 

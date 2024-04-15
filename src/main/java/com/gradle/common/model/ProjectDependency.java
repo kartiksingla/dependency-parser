@@ -1,8 +1,8 @@
-package com.gradle.model;
+package com.gradle.common.model;
 
 public class ProjectDependency extends Dependency {
 
-    protected ProjectDependency(final String artifactId) {
+    public ProjectDependency(final String artifactId) {
         super(artifactId);
     }
 

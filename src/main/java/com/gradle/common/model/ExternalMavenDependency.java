@@ -1,4 +1,4 @@
-package com.gradle.model;
+package com.gradle.common.model;
 
 import java.util.Objects;
 
