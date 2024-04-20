@@ -7,9 +7,11 @@ import java.util.Set;
 public enum DependencyTreeScope {
 
     COMPILE_CLASSPATH("compileClasspath", GeneralScope.COMPILE, Set.of()),
-    TEST_COMPILE_CLASSPATH("testCompileClasspath", GeneralScope.COMPILE, Set.of(COMPILE_CLASSPATH)),
 
     RUNTIME_ONLY("runtimeOnly", GeneralScope.RUNTIME, Set.of(COMPILE_CLASSPATH)),
+
+    TEST_COMPILE_CLASSPATH("testCompileClasspath", GeneralScope.COMPILE, Set.of(COMPILE_CLASSPATH)),
+
     TEST_RUNTIME_ONLY("testRuntimeOnly", GeneralScope.RUNTIME, Set.of(COMPILE_CLASSPATH, TEST_COMPILE_CLASSPATH, RUNTIME_ONLY));
 
     private final String name;

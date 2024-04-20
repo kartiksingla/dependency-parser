@@ -10,4 +10,10 @@ public class ProjectDependency extends Dependency {
     public String toString() {
         return super.getArtifactId();
     }
+
+    @Override
+    public int compareTo(Dependency other) {
+        if(!ProjectDependency.class.isAssignableFrom(other.getClass())) return -1;
+        return super.getArtifactId().compareTo(other.getArtifactId());
+    }
 }

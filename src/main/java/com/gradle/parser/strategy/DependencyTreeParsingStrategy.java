@@ -29,21 +29,28 @@ public final class DependencyTreeParsingStrategy implements IParsingStrategy {
     }
 
     private Map<String, Set<Dependency>> eliminateDuplicates(Map<DependencyTreeScope, Set<Dependency>> dependenciesByScope) {
-        return dependenciesByScope.entrySet().stream().collect(Collectors.toMap(
-            entry -> entry.getKey().name(),
-            entry -> Stream.of(entry.getKey().getInheritedScopeSet())
-                .map(dependenciesByScope::get)
-                .flatMap(deps -> deps.stream().distinct())
-                .filter(parentDep -> !entry.getValue().contains(parentDep))
-                .collect(Collectors.toSet())
-        ));
+        return Arrays.stream(DependencyTreeScope.values())
+            .filter(dependenciesByScope::containsKey) // if dependencyTree had that scope present
+            .collect(
+                Collectors.toMap(
+                    DependencyTreeScope::name,
+                    scope -> {
+                        Set<Dependency> dependencies = dependenciesByScope.get(scope);
+                        dependencies.removeAll(scope.getInheritedScopeSet().stream()
+                            .filter(dependenciesByScope::containsKey)
+                            .flatMap(pScope -> dependenciesByScope.get(pScope).stream())
+                            .collect(Collectors.toSet()));
+                        return dependencies;
+                    }
+                )
+            );
     }
 
     /**
      * Finds and extracts dependency information for a specified configuration.
      *
      * @param configurationName The name of the configuration to find (e.g., "compileClasspath").
-     * @param fileContent         The list of lines from the Gradle dependencies output.
+     * @param fileContent       The list of lines from the Gradle dependencies output.
      * @return A {@link Set} of {@link Dependency} containing the dependencies under the specified configuration.
      */
     private Set<Dependency> getDependencies(String configurationName, List<String> fileContent) {
@@ -57,13 +64,13 @@ public final class DependencyTreeParsingStrategy implements IParsingStrategy {
 
     private List<String> findConfigurationSpecificDependencies(String configurationName,
                                                                List<String> fileContent) {
-        int startIndex = IntStream.range(0, fileContent.size()-1)
+        int startIndex = IntStream.range(0, fileContent.size() - 1)
             .filter(idx -> fileContent.get(idx).trim().startsWith(configurationName))
             .findFirst().orElse(-1);
-        if(startIndex == -1) {
+        if (startIndex == -1) {
             return List.of();
         }
-        int endIndex = IntStream.range(startIndex+1, fileContent.size())
+        int endIndex = IntStream.range(startIndex + 1, fileContent.size())
             .filter(idx -> fileContent.get(idx).trim().isEmpty())
             .findFirst()
             .orElse(fileContent.size());

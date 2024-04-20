@@ -2,7 +2,7 @@ package com.gradle.common.model;
 
 import java.util.Objects;
 
-public abstract class Dependency {
+public abstract class Dependency implements Comparable<Dependency> {
 
     private final String artifactId;
 

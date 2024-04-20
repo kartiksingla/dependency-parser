@@ -11,12 +11,12 @@ noise1
 compileClasspath
 +--- commons:commons-lang:1.2.3
 +--- apache:http-client:3.0.1 -> 4.1.0
-+--- project :api
-+--- project :client
++--- project ':api'
++--- project ':client'
 \--- google:collect:21.0 -> 31.1-jre
 
 runtimeOnly
-+--- project :feign-client
++--- project ':feign-client'
 \--- spring-security:oauth2:4.3.16
 
 testCompileClasspath
@@ -28,6 +28,7 @@ testCompileClasspath
 
 testRuntimeOnly
 +--- com.hamcrest:hamcrest-core:1.3.16
++--- google:collect:21.0 -> 31.1-jre
 \--- com.test:map-struct:4.1
 
 fdfdsf

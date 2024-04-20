@@ -13,8 +13,8 @@ import java.util.regex.Pattern;
 public class DependencyFactory {
 
     private static final IVersionParserStrategy versionParserStrategy = new DefaultVersionParserStrategy();
-    private static final Pattern MAVEN_DEPENDENCY_PATTERN = Pattern.compile("([^:]+):([^:]+):(\\S+)");
-    private static final Pattern PROJECT_DEPENDENCY_PATTERN = Pattern.compile("project\\('([^']+)'\\)");
+    private static final Pattern MAVEN_DEPENDENCY_PATTERN = Pattern.compile("([^:]+):([^:]+):(\\S+[^$]*)");
+    private static final Pattern PROJECT_DEPENDENCY_PATTERN = Pattern.compile("project '([^']+)'");
 
     public static Dependency createDependency(final String dependencyData) {
         Objects.requireNonNull(dependencyData);
