@@ -9,10 +9,11 @@ noise1
 noise1
 
 compileClasspath
-+--- commons:commons-lang:1.2.3
-+--- apache:http-client:3.0.1 -> 4.1.0
-+--- project ':api'
-+--- project ':client'
++--- commons:commons-lang -> 1.2.3
++--- commons:commons-http:1.2.3
++--- apache:http-client:3.0.1 -> 4.1.0 (*)
++--- project ':api' (n)
++--- project ':client' (2)
 \--- google:collect:21.0 -> 31.1-jre
 
 runtimeOnly

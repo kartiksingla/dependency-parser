@@ -1,4 +1,4 @@
-package com.gradle.parser.version.strategy;
+package com.gradle.parser.strategy.version;
 
 public interface IVersionParserStrategy {
 
