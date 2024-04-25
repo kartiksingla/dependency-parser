@@ -11,6 +11,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public final class DependencyTreeParsingStrategy implements IParsingStrategy {
+
     @Override
     public Map<String, Set<Dependency>> parse(final String fileContent) {
         Objects.requireNonNull(fileContent);
@@ -76,9 +77,5 @@ public final class DependencyTreeParsingStrategy implements IParsingStrategy {
             .orElse(fileContent.size());
 
         return fileContent.subList(startIndex + 1, endIndex);
-    }
-
-    private boolean isEmpty(String val) {
-        return val.trim().isEmpty();
     }
 }
